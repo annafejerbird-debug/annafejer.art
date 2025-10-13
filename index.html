@@ -354,6 +354,37 @@
             line-height: 1.5;
         }
 
+        /* Placeholder Artwork */
+        .placeholder-box {
+            width: 100%;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .placeholder-text {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .placeholder-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        .placeholder-artwork:hover .placeholder-box {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: #555;
+        }
+
         /* Experience Section */
         #experience {
             background: #0a0a0a;
@@ -671,10 +702,10 @@
                 </div>
 
                 <div class="artwork">
-                    <img src="./Images/10.jpg" alt="Plate Mice">
+                    <img src="./Images/10.jpg" alt="Low Poly Mouse">
                     <div class="artwork-info">
-                        <div class="artwork-title">Plate Mice</div>
-                        <div class="artwork-description">Ink on paper. Symmetrical composition investigating balance and reflection.</div>
+                        <div class="artwork-title">Low Poly Mouse</div>
+                        <div class="artwork-description">Ink on paper. The decomposition of a simple creature.</div>
                     </div>
                 </div>
 
@@ -683,6 +714,17 @@
                     <div class="artwork-info">
                         <div class="artwork-title">Remembering a Cat named Arthur</div>
                         <div class="artwork-description">Ink on paper. Abstract memorial exploring memory and loss through fluid forms.</div>
+                    </div>
+                </div>
+
+                <div class="artwork placeholder-artwork">
+                    <div class="placeholder-box">
+                        <p class="placeholder-text">🏅</p>
+                        <p class="placeholder-message">Congratulations!<br>You made it all the way here while browsing my website.<br>You deserve a medal.</p>
+                    </div>
+                    <div class="artwork-info">
+                        <div class="artwork-title">Achievement Unlocked</div>
+                        <div class="artwork-description">Perseverance rewarded.</div>
                     </div>
                 </div>
             </div>
