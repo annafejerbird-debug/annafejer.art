@@ -393,6 +393,21 @@
             position: relative;
             overflow: hidden;
             border: 1px solid #333;
+            animation: popOut 0.6s ease-out;
+        }
+
+        @keyframes popOut {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .video-reveal iframe {
@@ -401,6 +416,42 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+
+        .placeholder-box.clicking {
+            animation: clickPulse 0.3s ease-out;
+        }
+
+        @keyframes clickPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
         }
 
         /* Experience Section */
@@ -895,26 +946,120 @@
                 });
             });
 
-            // Secret achievement video
+            // Secret achievement video with confetti
             const placeholderBox = document.getElementById('placeholder-content');
             if (placeholderBox) {
-                placeholderBox.addEventListener('click', function() {
-                    // Create video container
-                    const videoContainer = document.createElement('div');
-                    videoContainer.className = 'video-reveal';
+                placeholderBox.addEventListener('click', function(e) {
+                    // Add click animation
+                    this.classList.add('clicking');
                     
-                    // Create iframe with autoplay
-                    const iframe = document.createElement('iframe');
-                    iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&vq=hd1080';
-                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                    iframe.allowFullscreen = true;
-                    iframe.frameBorder = '0';
+                    // Create confetti explosion
+                    createConfetti(e);
                     
-                    videoContainer.appendChild(iframe);
-                    
-                    // Replace placeholder with video
-                    this.parentNode.replaceChild(videoContainer, this);
+                    // Wait for click animation to finish, then reveal video
+                    setTimeout(() => {
+                        // Create video container
+                        const videoContainer = document.createElement('div');
+                        videoContainer.className = 'video-reveal';
+                        
+                        // Create iframe with autoplay
+                        const iframe = document.createElement('iframe');
+                        iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&vq=hd1080';
+                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        iframe.allowFullscreen = true;
+                        iframe.frameBorder = '0';
+                        
+                        videoContainer.appendChild(iframe);
+                        
+                        // Replace placeholder with video
+                        this.parentNode.replaceChild(videoContainer, this);
+                    }, 300);
                 });
+            }
+
+            // Confetti explosion function
+            function createConfetti(event) {
+                const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#ff9ff3', '#54a0ff', '#48dbfb', '#1dd1a1'];
+                const rect = event.target.closest('.artwork').getBoundingClientRect();
+                
+                // Create continuous bursts from left and right sides for 3 minutes
+                const duration = 3 * 60 * 1000; // 3 minutes in milliseconds
+                const startTime = Date.now();
+                
+                const burstInterval = setInterval(() => {
+                    // Check if 3 minutes have passed
+                    if (Date.now() - startTime >= duration) {
+                        clearInterval(burstInterval);
+                        return;
+                    }
+                    
+                    // Left side burst
+                    createBurst(rect.left, rect.top + rect.height / 2, colors, 'left');
+                    
+                    // Right side burst
+                    createBurst(rect.right, rect.top + rect.height / 2, colors, 'right');
+                }, 150);
+            }
+            
+            function createBurst(x, y, colors, side) {
+                const confettiCount = 15;
+                
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    // Random color
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Random size
+                    const size = Math.random() * 8 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    
+                    // Starting position
+                    confetti.style.left = x + 'px';
+                    confetti.style.top = y + 'px';
+                    
+                    // Explosion direction based on side
+                    let angle;
+                    if (side === 'left') {
+                        // Burst to the left (180° to 270° range, with some spread)
+                        angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.8;
+                    } else {
+                        // Burst to the right (270° to 360° range, with some spread)
+                        angle = (Math.random() - 0.5) * Math.PI * 0.8;
+                    }
+                    
+                    const velocity = Math.random() * 200 + 150;
+                    const velocityX = Math.cos(angle) * velocity;
+                    const velocityY = Math.sin(angle) * velocity;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Animate confetti
+                    confetti.animate([
+                        {
+                            transform: `translate(0, 0) rotate(0deg)`,
+                            opacity: 1
+                        },
+                        {
+                            transform: `translate(${velocityX}px, ${velocityY}px) rotate(${Math.random() * 360}deg)`,
+                            opacity: 0.9
+                        },
+                        {
+                            transform: `translate(${velocityX * 1.2}px, ${velocityY + 400}px) rotate(${Math.random() * 720}deg)`,
+                            opacity: 0
+                        }
+                    ], {
+                        duration: 2000 + Math.random() * 800,
+                        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    });
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }
             }
         });
     </script>
