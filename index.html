@@ -366,6 +366,8 @@
             justify-content: center;
             padding: 2rem;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .placeholder-text {
@@ -383,6 +385,22 @@
         .placeholder-artwork:hover .placeholder-box {
             background: rgba(255, 255, 255, 0.06);
             border-color: #555;
+        }
+
+        .video-reveal {
+            width: 100%;
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .video-reveal iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         /* Experience Section */
@@ -717,14 +735,14 @@
                     </div>
                 </div>
 
-                <div class="artwork placeholder-artwork">
-                    <div class="placeholder-box">
+                <div class="artwork placeholder-artwork" id="secret-artwork">
+                    <div class="placeholder-box" id="placeholder-content">
                         <p class="placeholder-text">🏅</p>
                         <p class="placeholder-message">Congratulations!<br>You made it all the way here while browsing my website.<br>You deserve a medal.</p>
                     </div>
                     <div class="artwork-info">
                         <div class="artwork-title">Achievement Unlocked</div>
-                        <div class="artwork-description">Perseverance rewarded.</div>
+                        <div class="artwork-description">Perseverance rewarded. (Click to claim your prize!)</div>
                     </div>
                 </div>
             </div>
@@ -876,6 +894,28 @@
                     }
                 });
             });
+
+            // Secret achievement video
+            const placeholderBox = document.getElementById('placeholder-content');
+            if (placeholderBox) {
+                placeholderBox.addEventListener('click', function() {
+                    // Create video container
+                    const videoContainer = document.createElement('div');
+                    videoContainer.className = 'video-reveal';
+                    
+                    // Create iframe with autoplay
+                    const iframe = document.createElement('iframe');
+                    iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&vq=hd1080';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                    iframe.allowFullscreen = true;
+                    iframe.frameBorder = '0';
+                    
+                    videoContainer.appendChild(iframe);
+                    
+                    // Replace placeholder with video
+                    this.parentNode.replaceChild(videoContainer, this);
+                });
+            }
         });
     </script>
 </body>
