@@ -980,7 +980,7 @@
             // Confetti explosion function
             function createConfetti(event) {
                 const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#ff9ff3', '#54a0ff', '#48dbfb', '#1dd1a1'];
-                const rect = event.target.closest('.artwork').getBoundingClientRect();
+                const artworkElement = event.target.closest('.artwork');
                 
                 // Create continuous bursts from left and right sides for 3 minutes
                 const duration = 3 * 60 * 1000; // 3 minutes in milliseconds
@@ -992,6 +992,9 @@
                         clearInterval(burstInterval);
                         return;
                     }
+                    
+                    // Recalculate position on each burst so it follows the box when scrolling
+                    const rect = artworkElement.getBoundingClientRect();
                     
                     // Left side burst
                     createBurst(rect.left, rect.top + rect.height / 2, colors, 'left');
