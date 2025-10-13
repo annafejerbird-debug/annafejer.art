@@ -36,8 +36,11 @@
             position: fixed;
             top: 0;
             right: 0;
+            left: 250px;
             padding: 1.5rem 2rem;
             z-index: 1000;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .cv-button {
@@ -191,7 +194,7 @@
         /* Sections */
         section {
             min-height: 100vh;
-            padding: 5rem 2rem;
+            padding: 5rem 2rem 5rem calc(250px + 2rem);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -206,6 +209,7 @@
         #home {
             text-align: center;
             flex-direction: column;
+            padding-top: 8rem;
         }
 
         #home h1 {
@@ -524,10 +528,11 @@
 
             .top-bar {
                 padding: 1rem 1rem;
+                left: 0;
             }
 
             section {
-                padding: 60px 15px;
+                padding: 80px 15px 60px 15px;
             }
 
             .contact-links-center {
