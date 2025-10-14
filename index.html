@@ -990,6 +990,7 @@
             function createConfetti(event) {
                 const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#ff9ff3', '#54a0ff', '#48dbfb', '#1dd1a1'];
                 const artworkElement = event.target.closest('.artwork');
+                const isMobile = window.innerWidth <= 768;
                 
                 // Create continuous bursts from left and right sides for 3 minutes
                 const duration = 3 * 60 * 1000; // 3 minutes in milliseconds
@@ -1005,11 +1006,15 @@
                     // Recalculate position on each burst so it follows the box when scrolling
                     const rect = artworkElement.getBoundingClientRect();
                     
-                    // Left side burst
-                    createBurst(rect.left, rect.top + rect.height / 2, colors, 'left');
-                    
-                    // Right side burst
-                    createBurst(rect.right, rect.top + rect.height / 2, colors, 'right');
+                    if (isMobile) {
+                        // Mobile: burst from top and bottom
+                        createBurst(rect.left + rect.width / 2, rect.top, colors, 'top');
+                        createBurst(rect.left + rect.width / 2, rect.bottom, colors, 'bottom');
+                    } else {
+                        // Desktop: burst from left and right
+                        createBurst(rect.left, rect.top + rect.height / 2, colors, 'left');
+                        createBurst(rect.right, rect.top + rect.height / 2, colors, 'right');
+                    }
                 }, 150);
             }
             
@@ -1037,9 +1042,15 @@
                     if (side === 'left') {
                         // Burst to the left (180° to 270° range, with some spread)
                         angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.8;
-                    } else {
+                    } else if (side === 'right') {
                         // Burst to the right (270° to 360° range, with some spread)
                         angle = (Math.random() - 0.5) * Math.PI * 0.8;
+                    } else if (side === 'top') {
+                        // Burst upward (90° to 180° and 0° to 90° range)
+                        angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 0.8;
+                    } else if (side === 'bottom') {
+                        // Burst downward (180° to 270° range)
+                        angle = Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 0.8;
                     }
                     
                     const velocity = Math.random() * 200 + 150;
