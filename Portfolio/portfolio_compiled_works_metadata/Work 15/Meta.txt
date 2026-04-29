@@ -1,0 +1,21 @@
+Work: Work 15
+Folder: Work 15
+Title: Studies of Brierley Hill
+Year of creation: 2025
+Format: Illustration
+Materials: Ink, Paper
+Size: 29.7 cm x 21 cm
+Location: 
+Portfolio content pages: 18
+
+Images used by LaTeX:
+  1. work-15-studies-of-brierley-hill-01.png - 984 x 1230 px, RGB, dpi 191.999 x 191.999, 0.79 MB, page 1, single image
+
+Raw Meta.txt text:
+  Work: Work 15
+  Folder: Work 15
+  Title: Studies of Brierley Hill
+  Year of creation: 2025
+  Format: Illustration
+  Materials: Ink, Paper
+  Size: 29.7cm x 21 cm
