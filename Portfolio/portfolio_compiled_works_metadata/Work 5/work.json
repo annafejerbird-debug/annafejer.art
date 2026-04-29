@@ -1,0 +1,31 @@
+{
+  "work_number": 5,
+  "work_label": "Work 5",
+  "folder": "Work 5",
+  "title": "Split II",
+  "year": "2024",
+  "materials": "Ink, Paper",
+  "format": "Lino Print",
+  "size": "21 cm x 14.8 cm",
+  "location": "",
+  "key": "work05",
+  "page_count": 1,
+  "source_meta_docx": "portfolio_compiled_works_metadata/Work 5/Meta.docx",
+  "images": [
+    {
+      "filename": "work-05-split-ii-01.jpg",
+      "relative_path": "portfolio_compiled_works_metadata/Work 5/work-05-split-ii-01.jpg",
+      "width_px": 1333,
+      "height_px": 749,
+      "aspect_ratio": 1.779706,
+      "mode": "RGB",
+      "dpi": null,
+      "file_size_bytes": 60009,
+      "sequence": 1,
+      "work_page": 1,
+      "page_role": "single-page image"
+    }
+  ],
+  "content_start_page": 6,
+  "content_end_page": 6
+}

@@ -1,0 +1,50 @@
+{
+  "work_number": 7,
+  "work_label": "Work 7",
+  "folder": "Work 7",
+  "title": "Live Illustration Performance in collaboration with Lucy Maclauchlan",
+  "year": "2024",
+  "materials": "Paint, Ink",
+  "format": "Canvas",
+  "size": "118.9 cm x 84.1 cm",
+  "location": "Kings Heath Eid - England",
+  "key": "work07",
+  "page_count": 1,
+  "source_meta_docx": "portfolio_compiled_works_metadata/Work 7/Meta.docx",
+  "images": [
+    {
+      "filename": "work-07-live-illustration-performance-in-collaboration-with-lucy-maclauchlan-01.png",
+      "relative_path": "portfolio_compiled_works_metadata/Work 7/work-07-live-illustration-performance-in-collaboration-with-lucy-maclauchlan-01.png",
+      "width_px": 1251,
+      "height_px": 1728,
+      "aspect_ratio": 0.723958,
+      "mode": "RGB",
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "file_size_bytes": 2847795,
+      "sequence": 1,
+      "work_page": 1,
+      "page_role": "equal-height spread image 1"
+    },
+    {
+      "filename": "work-07-live-illustration-performance-in-collaboration-with-lucy-maclauchlan-02.png",
+      "relative_path": "portfolio_compiled_works_metadata/Work 7/work-07-live-illustration-performance-in-collaboration-with-lucy-maclauchlan-02.png",
+      "width_px": 1690,
+      "height_px": 2048,
+      "aspect_ratio": 0.825195,
+      "mode": "RGB",
+      "dpi": [
+        191.99859999999998,
+        191.99859999999998
+      ],
+      "file_size_bytes": 4664688,
+      "sequence": 2,
+      "work_page": 1,
+      "page_role": "equal-height spread image 2"
+    }
+  ],
+  "content_start_page": 8,
+  "content_end_page": 8
+}

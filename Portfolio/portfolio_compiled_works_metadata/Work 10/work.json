@@ -1,0 +1,50 @@
+{
+  "work_number": 10,
+  "work_label": "Work 10",
+  "folder": "Work 10",
+  "title": "Bricks",
+  "year": "2025",
+  "materials": "Polystyrene, Newspaper, Maps, Copper Pipes, Fishing line",
+  "format": "Installation",
+  "size": "85 cm x 120 cm x 45 cm",
+  "location": "",
+  "key": "work10",
+  "page_count": 1,
+  "source_meta_docx": "portfolio_compiled_works_metadata/Work 10/Meta.docx",
+  "images": [
+    {
+      "filename": "work-10-bricks-01.png",
+      "relative_path": "portfolio_compiled_works_metadata/Work 10/work-10-bricks-01.png",
+      "width_px": 4032,
+      "height_px": 3024,
+      "aspect_ratio": 1.333333,
+      "mode": "RGB",
+      "dpi": [
+        96.012,
+        96.012
+      ],
+      "file_size_bytes": 7034635,
+      "sequence": 1,
+      "work_page": 1,
+      "page_role": "equal-height spread image 1"
+    },
+    {
+      "filename": "work-10-bricks-02.png",
+      "relative_path": "portfolio_compiled_works_metadata/Work 10/work-10-bricks-02.png",
+      "width_px": 4032,
+      "height_px": 3024,
+      "aspect_ratio": 1.333333,
+      "mode": "RGB",
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "file_size_bytes": 6952598,
+      "sequence": 2,
+      "work_page": 1,
+      "page_role": "equal-height spread image 2"
+    }
+  ],
+  "content_start_page": 12,
+  "content_end_page": 12
+}
