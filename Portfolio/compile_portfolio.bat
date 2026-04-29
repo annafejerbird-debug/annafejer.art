@@ -5,7 +5,7 @@ cd /d "%~dp0"
 
 set "TEX_FILE=portfolio_from_ppt_images.tex"
 set "PDF_FILE=portfolio_from_ppt_images.pdf"
-set "SUBMISSION_PDF=Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf"
+set "SUBMISSION_PDF=%USERPROFILE%\Desktop\Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf"
 
 where lualatex >nul 2>nul
 if %ERRORLEVEL%==0 (
