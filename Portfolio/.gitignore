@@ -6,6 +6,12 @@
 *.out
 *.synctex.gz
 
+Output/build/
+!Output/
+!Output/pages/
+!Output/pages/**
+!Output/pages/**/*.pdf
+
 tmp/
 extracted_images/
 portfolio all*/

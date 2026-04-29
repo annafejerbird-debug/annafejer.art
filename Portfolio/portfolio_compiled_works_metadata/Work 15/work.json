@@ -10,7 +10,7 @@
   "location": "",
   "key": "work15",
   "page_count": 1,
-  "source_meta_docx": "portfolio_compiled_works_metadata/Work 15/Meta.docx",
+  "source_meta_docx": "",
   "images": [
     {
       "filename": "work-15-studies-of-brierley-hill-01.png",
@@ -29,6 +29,6 @@
       "page_role": "single image"
     }
   ],
-  "content_start_page": 18,
-  "content_end_page": 18
+  "content_start_page": 19,
+  "content_end_page": 19
 }

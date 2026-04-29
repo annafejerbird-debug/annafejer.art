@@ -7,7 +7,7 @@
   "materials": "Metal Grates, Cardboard, Tape, Paint, Fishing Line",
   "format": "Installation",
   "size": "110 cm x 100 cm x 80 cm",
-  "location": "Exhibition at Dudley College of Technology",
+  "location": "E x hibition at Dudley College of Technology",
   "key": "work11",
   "page_count": 2,
   "source_meta_docx": "portfolio_compiled_works_metadata/Work 11/Meta.docx",
@@ -23,7 +23,7 @@
         72.009,
         72.009
       ],
-      "file_size_bytes": 12980716,
+      "file_size_bytes": 12169019,
       "sequence": 1,
       "work_page": 1,
       "page_role": "hero image"
@@ -39,7 +39,7 @@
         96.012,
         96.012
       ],
-      "file_size_bytes": 11049386,
+      "file_size_bytes": 10836388,
       "sequence": 2,
       "work_page": 2,
       "page_role": "equal-height spread image 1"
@@ -61,6 +61,6 @@
       "page_role": "equal-height spread image 2"
     }
   ],
-  "content_start_page": 13,
-  "content_end_page": 14
+  "content_start_page": 14,
+  "content_end_page": 15
 }

@@ -25,14 +25,16 @@
   \fi
   \usepackage{fontspec}
   \setmainfont{Inter-Variable.ttf}[
-    Path=fonts/Inter/,
+    Path=./compile-assets/fonts/Inter/,
+    Renderer=HarfBuzz,
     UprightFont=*,
     BoldFont=*,
     ItalicFont=*,
     BoldItalicFont=*
   ]
   \setsansfont{Inter-Variable.ttf}[
-    Path=fonts/Inter/,
+    Path=./compile-assets/fonts/Inter/,
+    Renderer=HarfBuzz,
     UprightFont=*,
     BoldFont=*,
     ItalicFont=*,
@@ -50,8 +52,8 @@
 \usepackage[hidelinks,bookmarks=true,bookmarksopen=true,unicode]{hyperref}
 
 \definecolor{PortfolioInk}{HTML}{1A1A1A}
-\definecolor{PortfolioGraphite}{HTML}{3F3F3F}
-\definecolor{PortfolioRule}{HTML}{BDBDBD}
+\definecolor{PortfolioGraphite}{HTML}{2E2E2E}
+\definecolor{PortfolioRule}{HTML}{9F9F9F}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
@@ -82,7 +84,7 @@
 
 \definework{work01}{1}{2}
   {Body Frames}{2025\artsep\textsc{Installation}}
-  {Glass, Metal, Sand, Fishing line\artsep175 cm x 210 cm x 70 cm}{Exhibition view, Dudley College of Technology, England}
+  {Glass, Metal, Sand, Fishing line\artsep175 cm x 210 cm x 70 cm}{E x hibition view, Dudley College of Technology, England}
 \setworktocmeta{work01}{\textsc{Installation}\artsep2025\artsep175 cm x 210 cm x 70 cm}
 
 \definework{work02}{2}{1}
@@ -90,7 +92,7 @@
   {Tin foil, Ink, Paper\artsep29.7 cm x 21 cm}{}
 \setworktocmeta{work02}{\textsc{Illustration}\artsep2025\artsep29.7 cm x 21 cm}
 
-\definework{work03}{3}{1}
+\definework{work03}{3}{2}
   {Can you Sit?}{2025\artsep\textsc{Sculpture}}
   {Wire, Wood\artsep25 cm x 10 cm x 10 cm}{}
 \setworktocmeta{work03}{\textsc{Sculpture}\artsep2025\artsep25 cm x 10 cm x 10 cm}
@@ -111,7 +113,7 @@
 \setworktocmeta{work06}{\textsc{Lino Print}\artsep2026\artsep29.7 cm x 21 cm}
 
 \definework{work07}{7}{1}
-  {Live Illustration Performance in collaboration with Lucy Maclauchlan}{2024\artsep\textsc{Canvas}}
+  {Live Illustration Performance}{2024\artsep\textsc{Canvas}}
   {Paint, Ink\artsep118.9 cm x 84.1 cm}{Kings Heath Eid - England}
 \setworktocmeta{work07}{\textsc{Canvas}\artsep2024\artsep118.9 cm x 84.1 cm}
 
@@ -132,7 +134,7 @@
 
 \definework{work11}{11}{2}
   {Layers of Brierley Hill}{2025\artsep\textsc{Installation}}
-  {Metal Grates, Cardboard, Tape, Paint, Fishing Line\artsep110 cm x 100 cm x 80 cm}{Exhibition at Dudley College of Technology}
+  {Metal Grates, Cardboard, Tape, Paint, Fishing Line\artsep110 cm x 100 cm x 80 cm}{E x hibition at Dudley College of Technology}
 \setworktocmeta{work11}{\textsc{Installation}\artsep2025\artsep110 cm x 100 cm x 80 cm}
 
 \definework{work12}{12}{1}
@@ -154,7 +156,6 @@
   {Studies of Brierley Hill}{2025\artsep\textsc{Illustration}}
   {Ink, Paper\artsep29.7 cm x 21 cm}{}
 \setworktocmeta{work15}{\textsc{Illustration}\artsep2025\artsep29.7 cm x 21 cm}
-
 \newcommand{\computeworkranges}{%
   \setcounter{cumpages}{0}%
   \setcounter{tocslot}{1}%
@@ -184,11 +185,11 @@
 \newcommand{\fitimagebox}[5]{\node[anchor=center,inner sep=0pt] at (#1,#2){\includegraphics[width=#3pt,height=#4pt,keepaspectratio]{\detokenize{#5}}};}
 \newcommand{\fitimageheight}[4]{\node[anchor=center,inner sep=0pt] at (#1,#2){\includegraphics[height=#3pt,keepaspectratio]{\detokenize{#4}}};}
 \newcommand{\artworkcaption}[2]{%
-  \node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,92){\fontsize{11.2}{13}\selectfont\bfseries\color{PortfolioInk}\workfield{#1}{title}};%
-  \ifcsempty{w@#1@captionmeta}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,76){\fontsize{8.6}{10.4}\selectfont\color{PortfolioGraphite}\workfield{#1}{captionmeta}};}%
-  \ifcsempty{w@#1@details}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,62){\fontsize{8.6}{10.4}\selectfont\color{PortfolioGraphite}\workfield{#1}{details}};}%
-  \ifcsempty{w@#1@location}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,48){\fontsize{8}{9.6}\selectfont\itshape\color{PortfolioGraphite}\workfield{#1}{location}};}%
-  \draw[PortfolioInk,line width=0.45pt] (774,38) -- (774,70);\node[anchor=east,inner sep=0pt] at (799.8898,49){\fontsize{10}{12}\selectfont\bfseries\color{PortfolioInk}\padpagenum{\numexpr\csname w@#1@start\endcsname+#2-1\relax}};%
+  \node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,108){\fontsize{13.4}{15.8}\selectfont\bfseries\color{PortfolioInk}\workfield{#1}{title}};%
+  \ifcsempty{w@#1@tocmeta}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,88){\fontsize{10.1}{12.1}\selectfont\color{PortfolioGraphite}\workfield{#1}{tocmeta}};}%
+  \ifcsempty{w@#1@details}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,73){\fontsize{10.1}{12.1}\selectfont\color{PortfolioGraphite}\workfield{#1}{details}};}%
+  \ifcsempty{w@#1@location}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,58){\fontsize{9.3}{11.2}\selectfont\color{PortfolioGraphite}\workfield{#1}{location}};}%
+  \draw[PortfolioInk,line width=0.8pt] (774,36) -- (774,76);\node[anchor=east,inner sep=0pt] at (799.8898,49){\fontsize{11.4}{13.4}\selectfont\bfseries\color{PortfolioInk}\padpagenum{\numexpr\csname w@#1@start\endcsname+#2-1\relax}};%
 }
 \newcommand{\tocentryrow}[4][0]{%
   \pgfmathsetmacro{\toctitlex}{#3+68}\pgfmathsetmacro{\tocrangex}{#3+324}\pgfmathsetmacro{\tocmetay}{#4-19-#1}%
@@ -258,9 +259,14 @@
 % ---------------------------------------------------------------------
 \begin{portfoliopage}
 \worktarget{work03}
-\fitimageheight{232.875}{343.500}{427.000}{portfolio_compiled_works_metadata/Work 3/work-03-can-you-sit-01.png}
-\fitimageheight{609.125}{343.500}{427.000}{portfolio_compiled_works_metadata/Work 3/work-03-can-you-sit-02.png}
+\fitimagebox{421.000}{343.500}{758.000}{427.000}{portfolio_compiled_works_metadata/Work 3/work-03-can-you-sit-01.png}
 \artworkcaption{work03}{1}
+\end{portfoliopage}
+
+\begin{portfoliopage}
+\fitimageheight{232.875}{343.500}{427.000}{portfolio_compiled_works_metadata/Work 3/work-03-can-you-sit-02.png}
+\fitimageheight{609.125}{343.500}{427.000}{portfolio_compiled_works_metadata/Work 3/work-03-can-you-sit-03.png}
+\artworkcaption{work03}{2}
 \end{portfoliopage}
 
 % ---------------------------------------------------------------------

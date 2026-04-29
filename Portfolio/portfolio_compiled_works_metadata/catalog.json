@@ -8,7 +8,7 @@
     "materials": "Glass, Metal, Sand, Fishing line",
     "format": "Installation",
     "size": "175 cm x 210 cm x 70 cm",
-    "location": "Exhibition view, Dudley College of Technology, England",
+    "location": "E x hibition view, Dudley College of Technology, England",
     "key": "work01",
     "page_count": 2,
     "source_meta_docx": "portfolio_compiled_works_metadata/Work 1/Meta.docx",
@@ -24,7 +24,7 @@
           191.99859999999998,
           191.99859999999998
         ],
-        "file_size_bytes": 4207371,
+        "file_size_bytes": 4173105,
         "sequence": 1,
         "work_page": 1,
         "page_role": "hero image"
@@ -40,7 +40,7 @@
           191.99859999999998,
           191.99859999999998
         ],
-        "file_size_bytes": 3870737,
+        "file_size_bytes": 3575111,
         "sequence": 2,
         "work_page": 2,
         "page_role": "equal-height spread image 1"
@@ -56,7 +56,7 @@
           191.99859999999998,
           191.99859999999998
         ],
-        "file_size_bytes": 3495921,
+        "file_size_bytes": 3426444,
         "sequence": 3,
         "work_page": 2,
         "page_role": "equal-height spread image 2"
@@ -126,7 +126,7 @@
     "size": "25 cm x 10 cm x 10 cm",
     "location": "",
     "key": "work03",
-    "page_count": 1,
+    "page_count": 2,
     "source_meta_docx": "portfolio_compiled_works_metadata/Work 3/Meta.docx",
     "images": [
       {
@@ -143,7 +143,7 @@
         "file_size_bytes": 14195596,
         "sequence": 1,
         "work_page": 1,
-        "page_role": "equal-height spread image 1"
+        "page_role": "hero image"
       },
       {
         "filename": "work-03-can-you-sit-02.png",
@@ -158,12 +158,28 @@
         ],
         "file_size_bytes": 15012790,
         "sequence": 2,
-        "work_page": 1,
+        "work_page": 2,
+        "page_role": "equal-height spread image 1"
+      },
+      {
+        "filename": "work-03-can-you-sit-03.png",
+        "relative_path": "portfolio_compiled_works_metadata/Work 3/work-03-can-you-sit-03.png",
+        "width_px": 3024,
+        "height_px": 4032,
+        "aspect_ratio": 0.75,
+        "mode": "RGB",
+        "dpi": [
+          72.009,
+          72.009
+        ],
+        "file_size_bytes": 12701314,
+        "sequence": 3,
+        "work_page": 2,
         "page_role": "equal-height spread image 2"
       }
     ],
     "content_start_page": 4,
-    "content_end_page": 4
+    "content_end_page": 5
   },
   {
     "work_number": 4,
@@ -182,19 +198,22 @@
       {
         "filename": "work-04-split-i-01.jpg",
         "relative_path": "portfolio_compiled_works_metadata/Work 4/work-04-split-i-01.jpg",
-        "width_px": 809,
+        "width_px": 539,
         "height_px": 749,
-        "aspect_ratio": 1.080107,
+        "aspect_ratio": 0.719626,
         "mode": "RGB",
-        "dpi": null,
-        "file_size_bytes": 143143,
+        "dpi": [
+          96,
+          96
+        ],
+        "file_size_bytes": 147352,
         "sequence": 1,
         "work_page": 1,
         "page_role": "single-page image"
       }
     ],
-    "content_start_page": 5,
-    "content_end_page": 5
+    "content_start_page": 6,
+    "content_end_page": 6
   },
   {
     "work_number": 5,
@@ -213,19 +232,22 @@
       {
         "filename": "work-05-split-ii-01.jpg",
         "relative_path": "portfolio_compiled_works_metadata/Work 5/work-05-split-ii-01.jpg",
-        "width_px": 1333,
+        "width_px": 513,
         "height_px": 749,
-        "aspect_ratio": 1.779706,
+        "aspect_ratio": 0.684913,
         "mode": "RGB",
-        "dpi": null,
-        "file_size_bytes": 60009,
+        "dpi": [
+          96,
+          96
+        ],
+        "file_size_bytes": 74602,
         "sequence": 1,
         "work_page": 1,
         "page_role": "single-page image"
       }
     ],
-    "content_start_page": 6,
-    "content_end_page": 6
+    "content_start_page": 7,
+    "content_end_page": 7
   },
   {
     "work_number": 6,
@@ -258,14 +280,14 @@
         "page_role": "single-page image"
       }
     ],
-    "content_start_page": 7,
-    "content_end_page": 7
+    "content_start_page": 8,
+    "content_end_page": 8
   },
   {
     "work_number": 7,
     "work_label": "Work 7",
     "folder": "Work 7",
-    "title": "Live Illustration Performance in collaboration with Lucy Maclauchlan",
+    "title": "Live Illustration Performance",
     "year": "2024",
     "materials": "Paint, Ink",
     "format": "Canvas",
@@ -308,8 +330,8 @@
         "page_role": "equal-height spread image 2"
       }
     ],
-    "content_start_page": 8,
-    "content_end_page": 8
+    "content_start_page": 9,
+    "content_end_page": 9
   },
   {
     "work_number": 8,
@@ -374,8 +396,8 @@
         "page_role": "equal-height spread image 2"
       }
     ],
-    "content_start_page": 9,
-    "content_end_page": 10
+    "content_start_page": 10,
+    "content_end_page": 11
   },
   {
     "work_number": 9,
@@ -424,8 +446,8 @@
         "page_role": "equal-height spread image 2"
       }
     ],
-    "content_start_page": 11,
-    "content_end_page": 11
+    "content_start_page": 12,
+    "content_end_page": 12
   },
   {
     "work_number": 10,
@@ -474,8 +496,8 @@
         "page_role": "equal-height spread image 2"
       }
     ],
-    "content_start_page": 12,
-    "content_end_page": 12
+    "content_start_page": 13,
+    "content_end_page": 13
   },
   {
     "work_number": 11,
@@ -486,7 +508,7 @@
     "materials": "Metal Grates, Cardboard, Tape, Paint, Fishing Line",
     "format": "Installation",
     "size": "110 cm x 100 cm x 80 cm",
-    "location": "Exhibition at Dudley College of Technology",
+    "location": "E x hibition at Dudley College of Technology",
     "key": "work11",
     "page_count": 2,
     "source_meta_docx": "portfolio_compiled_works_metadata/Work 11/Meta.docx",
@@ -502,7 +524,7 @@
           72.009,
           72.009
         ],
-        "file_size_bytes": 12980716,
+        "file_size_bytes": 12169019,
         "sequence": 1,
         "work_page": 1,
         "page_role": "hero image"
@@ -518,7 +540,7 @@
           96.012,
           96.012
         ],
-        "file_size_bytes": 11049386,
+        "file_size_bytes": 10836388,
         "sequence": 2,
         "work_page": 2,
         "page_role": "equal-height spread image 1"
@@ -540,8 +562,8 @@
         "page_role": "equal-height spread image 2"
       }
     ],
-    "content_start_page": 13,
-    "content_end_page": 14
+    "content_start_page": 14,
+    "content_end_page": 15
   },
   {
     "work_number": 12,
@@ -590,8 +612,8 @@
         "page_role": "equal-height spread image 2"
       }
     ],
-    "content_start_page": 15,
-    "content_end_page": 15
+    "content_start_page": 16,
+    "content_end_page": 16
   },
   {
     "work_number": 13,
@@ -640,8 +662,8 @@
         "page_role": "equal-height spread image 2"
       }
     ],
-    "content_start_page": 16,
-    "content_end_page": 16
+    "content_start_page": 17,
+    "content_end_page": 17
   },
   {
     "work_number": 14,
@@ -674,8 +696,8 @@
         "page_role": "single image"
       }
     ],
-    "content_start_page": 17,
-    "content_end_page": 17
+    "content_start_page": 18,
+    "content_end_page": 18
   },
   {
     "work_number": 15,
@@ -689,7 +711,7 @@
     "location": "",
     "key": "work15",
     "page_count": 1,
-    "source_meta_docx": "portfolio_compiled_works_metadata/Work 15/Meta.docx",
+    "source_meta_docx": "",
     "images": [
       {
         "filename": "work-15-studies-of-brierley-hill-01.png",
@@ -708,7 +730,7 @@
         "page_role": "single image"
       }
     ],
-    "content_start_page": 18,
-    "content_end_page": 18
+    "content_start_page": 19,
+    "content_end_page": 19
   }
 ]

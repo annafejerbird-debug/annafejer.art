@@ -7,7 +7,7 @@
   "materials": "Glass, Metal, Sand, Fishing line",
   "format": "Installation",
   "size": "175 cm x 210 cm x 70 cm",
-  "location": "Exhibition view, Dudley College of Technology, England",
+  "location": "E x hibition view, Dudley College of Technology, England",
   "key": "work01",
   "page_count": 2,
   "source_meta_docx": "portfolio_compiled_works_metadata/Work 1/Meta.docx",
@@ -23,7 +23,7 @@
         191.99859999999998,
         191.99859999999998
       ],
-      "file_size_bytes": 4207371,
+      "file_size_bytes": 4173105,
       "sequence": 1,
       "work_page": 1,
       "page_role": "hero image"
@@ -39,7 +39,7 @@
         191.99859999999998,
         191.99859999999998
       ],
-      "file_size_bytes": 3870737,
+      "file_size_bytes": 3575111,
       "sequence": 2,
       "work_page": 2,
       "page_role": "equal-height spread image 1"
@@ -55,7 +55,7 @@
         191.99859999999998,
         191.99859999999998
       ],
-      "file_size_bytes": 3495921,
+      "file_size_bytes": 3426444,
       "sequence": 3,
       "work_page": 2,
       "page_role": "equal-height spread image 2"
