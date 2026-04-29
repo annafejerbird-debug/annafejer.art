@@ -24,13 +24,21 @@
     \pdfvariable objcompresslevel=3
   \fi
   \usepackage{fontspec}
-  \IfFontExistsTF{Inter}{
-    \setmainfont{Inter}
-    \setsansfont{Inter}
-  }{
-    \setmainfont{Arial}
-    \setsansfont{Arial}
-  }
+  \setmainfont{Inter-Variable.ttf}[
+    Path=fonts/Inter/,
+    UprightFont=*,
+    BoldFont=*,
+    ItalicFont=*,
+    BoldItalicFont=*
+  ]
+  \setsansfont{Inter-Variable.ttf}[
+    Path=fonts/Inter/,
+    UprightFont=*,
+    BoldFont=*,
+    ItalicFont=*,
+    BoldItalicFont=*
+  ]
+  \renewcommand{\textsc}[1]{{\addfontfeatures{LetterSpace=4}\MakeUppercase{#1}}}
 \fi
 
 \usepackage[a4paper,landscape,margin=0pt,noheadfoot]{geometry}
