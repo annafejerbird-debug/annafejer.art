@@ -5,7 +5,10 @@ cd /d "%~dp0"
 
 set "TEX_FILE=portfolio_from_ppt_images.tex"
 set "PDF_FILE=portfolio_from_ppt_images.pdf"
+set "PDF_PATH=%CD%\%PDF_FILE%"
 set "SUBMISSION_PDF=%USERPROFILE%\Desktop\Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf"
+
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0refresh_portfolio_pdf_viewers.ps1" -Close -Paths "%PDF_PATH%" "%SUBMISSION_PDF%"
 
 where lualatex >nul 2>nul
 if %ERRORLEVEL%==0 (
@@ -43,6 +46,7 @@ if exist "%PDF_FILE%" (
   echo.
   echo Done: %PDF_FILE%
   echo Submission copy: %SUBMISSION_PDF%
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0refresh_portfolio_pdf_viewers.ps1" -Open -Paths "%SUBMISSION_PDF%"
 ) else (
   echo.
   echo Done, but %PDF_FILE% was not found to rename.
