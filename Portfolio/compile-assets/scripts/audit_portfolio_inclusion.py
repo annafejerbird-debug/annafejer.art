@@ -14,19 +14,13 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".tif", ".tiff"}
-TEX_FILES = ["portfolio_from_ppt_images.tex", "portfolio_from_ppt_images_a4.tex"]
+TEX_FILES = ["portfolio_from_ppt_images_a4.tex"]
 OUTPUTS = [
     {
-        "key": "wide",
+        "key": "a4",
         "pdf": "Output/Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf",
         "pages_dir": "Output/pages/Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent",
         "page_prefix": "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent",
-    },
-    {
-        "key": "a4",
-        "pdf": "Output/Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4.pdf",
-        "pages_dir": "Output/pages/Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4",
-        "page_prefix": "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4",
     },
 ]
 
@@ -61,7 +55,8 @@ def clean_meta_value(value: str) -> str:
     value = value.strip()
     value = re.sub(r"\s+", " ", value)
     value = re.sub(r"(?<=\d)(cm|mm|m)\b", r" \1", value)
-    value = re.sub(r"\s*x\s*", " x ", value)
+    value = re.sub(r"(?<=\d)\s*x\s*(?=\d)", " x ", value)
+    value = re.sub(r"(?<=m)\s*x\s*(?=\d)", " x ", value)
     value = value.replace("Fishing-line", "Fishing line")
     value = value.replace("fishing-line", "fishing line")
     return value.strip()
@@ -285,22 +280,35 @@ def tex_escape(value: Any) -> str:
     return "".join(replacements.get(char, char) for char in text)
 
 
+def tex_join(parts: list[str]) -> str:
+    return r"\artsep{}".join(parts)
+
+
 def tex_meta(work: dict[str, Any]) -> str:
     parts = []
-    if work.get("year"):
-        parts.append(tex_escape(work["year"]))
     if work.get("format"):
         parts.append(r"\textsc{" + tex_escape(work["format"]) + "}")
-    return r"\artsep".join(parts)
+    if work.get("year"):
+        parts.append(tex_escape(work["year"]))
+    return tex_join(parts)
 
 
 def tex_details(work: dict[str, Any]) -> str:
     parts = []
     if work.get("materials"):
         parts.append(tex_escape(work["materials"]))
+    return tex_join(parts)
+
+
+def tex_caption_details(work: dict[str, Any]) -> str:
+    parts = []
+    if work.get("materials"):
+        parts.append(tex_escape(work["materials"]))
     if work.get("size"):
         parts.append(tex_escape(work["size"]))
-    return r"\artsep".join(parts)
+    if work.get("location"):
+        parts.append(tex_escape(work["location"]))
+    return tex_join(parts)
 
 
 def tex_toc_meta(work: dict[str, Any]) -> str:
@@ -311,7 +319,7 @@ def tex_toc_meta(work: dict[str, Any]) -> str:
         parts.append(tex_escape(work["year"]))
     if work.get("size"):
         parts.append(tex_escape(work["size"]))
-    return r"\artsep".join(parts)
+    return tex_join(parts)
 
 
 def sync_tex_inventory(root: Path, catalog: list[dict[str, Any]]) -> None:
@@ -327,7 +335,7 @@ def sync_tex_inventory(root: Path, catalog: list[dict[str, Any]]) -> None:
             [
                 rf"\definework{{{key}}}{{{work['work_number']}}}{{{work['page_count']}}}",
                 rf"  {{{tex_escape(work['title'])}}}{{{tex_meta(work)}}}",
-                rf"  {{{tex_details(work)}}}{{{tex_escape(work.get('location', ''))}}}",
+                rf"  {{{tex_caption_details(work)}}}{{}}",
                 rf"\setworktocmeta{{{key}}}{{{tex_toc_meta(work)}}}",
                 "",
             ]
@@ -354,7 +362,22 @@ def sync_tex_inventory(root: Path, catalog: list[dict[str, Any]]) -> None:
 def pdf_info(path: Path) -> dict[str, Any]:
     if not path.exists():
         return {"path": path.as_posix(), "exists": False}
-    info = subprocess.check_output(["pdfinfo", str(path)], text=True, errors="replace")
+    proc = subprocess.run(
+        ["pdfinfo", str(path)],
+        text=True,
+        errors="replace",
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if proc.returncode != 0:
+        return {
+            "path": path.as_posix(),
+            "exists": True,
+            "readable": False,
+            "error": (proc.stderr or proc.stdout).strip(),
+            "file_size_bytes": path.stat().st_size,
+        }
+    info = proc.stdout
     pages = None
     media_box = ""
     for line in info.splitlines():
@@ -365,6 +388,7 @@ def pdf_info(path: Path) -> dict[str, Any]:
     return {
         "path": path.as_posix(),
         "exists": True,
+        "readable": True,
         "pages": pages,
         "page_size": media_box,
         "file_size_bytes": path.stat().st_size,
@@ -481,6 +505,8 @@ def main() -> int:
         for output in manifest["outputs"]:
             if not output["pdf"].get("exists"):
                 errors.append(f"Missing compiled PDF: {output['pdf']['path']}")
+            elif not output["pdf"].get("readable", True):
+                errors.append(f"Unreadable compiled PDF: {output['pdf']['path']}")
             elif output["pdf"].get("pages") != manifest["expected_pdf_page_count"]:
                 errors.append(
                     f"{output['pdf']['path']} has {output['pdf'].get('pages')} pages, "

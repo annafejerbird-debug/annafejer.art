@@ -1,17 +1,18 @@
-Portfolio layout QA report - 16:9 custom
+Portfolio layout QA report - A4 landscape
 
-PDF: portfolio_from_ppt_images.pdf
-TeX: portfolio_from_ppt_images.tex
-Pages: 19 (720 x 405 pts)
-Artwork source images in catalog: 27
-Embedded artwork images: 27; soft masks: 2; source pixel dimensions preserved: YES
+PDF: Output/Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf
+TeX: portfolio_from_ppt_images_a4.tex
+Pages: 21 (841.89 x 595.276 pts, A4 landscape)
+Artwork source images in catalog: 29
+Embedded artwork images: 29; soft masks: 2; source pixel dimensions preserved: YES
 Old/stale artwork references: none
-Artwork pages parsed: 17
-Minimum conservative gap from image bottom to caption title top: 30.00 pt
-Minimum horizontal gap between paired images: 44.00 pt
+Artwork pages parsed: 19
+Minimum conservative gap from image bottom to caption title top: 38.00 pt
+Minimum horizontal gap between paired images: 56.00 pt
 Maximum paired-image height difference on a page: 0.0000 pt
 Artwork caption includes bottom-left work label: NO
-Page index number right edge x=698.0000 pt; right margin=22.0000 pt; expected margin=22.0000 pt
-Rendered visual pages inspected: 19 PNGs at 144 dpi
+Page index number right edge x=799.8898 pt; right margin=42.0000 pt; expected margin=42.0000 pt
+Rendered visual pages inspected: 21 PNGs in Output/build/render-a4-check/contact-sheet.png
+Caption metadata layout: title; FORMAT - YEAR; materials; size - location.
 
 Result: PASS - no overlap or source-quality issues detected.

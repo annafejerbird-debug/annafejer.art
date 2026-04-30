@@ -1,8 +1,7 @@
 param(
-  [ValidateSet("wide", "a4", "both")]
-  [string]$Format = "both",
   [switch]$SkipPdf,
-  [switch]$NoOpen
+  [switch]$NoOpen,
+  [switch]$Full
 )
 
 $ErrorActionPreference = "Stop"
@@ -18,67 +17,94 @@ $AuditScript = Join-Path $ScriptDir "audit_portfolio_inclusion.py"
 
 Set-Location $Root
 New-Item -ItemType Directory -Force -Path $OutputRoot, $BuildDir, $PageRoot | Out-Null
+Get-ChildItem -LiteralPath $BuildDir -Directory -Filter "run-*" -ErrorAction SilentlyContinue |
+  Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
 
-$Targets = @(
-  @{
-    Key = "wide"
-    Tex = "portfolio_from_ppt_images.tex"
-    BuildPdf = Join-Path $BuildDir "portfolio_from_ppt_images.pdf"
-    FinalPdf = Join-Path $OutputRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf"
-    PageDir = Join-Path $PageRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent"
-    PagePrefix = "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent"
-    LegacyPaths = @(
-      (Join-Path $Root "portfolio_from_ppt_images.pdf"),
-      (Join-Path ([Environment]::GetFolderPath("Desktop")) "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf")
-    )
-  },
-  @{
-    Key = "a4"
-    Tex = "portfolio_from_ppt_images_a4.tex"
-    BuildPdf = Join-Path $BuildDir "portfolio_from_ppt_images_a4.pdf"
-    FinalPdf = Join-Path $OutputRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4.pdf"
-    PageDir = Join-Path $PageRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4"
-    PagePrefix = "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4"
-    LegacyPaths = @(
-      (Join-Path $Root "portfolio_from_ppt_images_a4.pdf"),
-      (Join-Path ([Environment]::GetFolderPath("Desktop")) "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4.pdf")
-    )
-  }
+$Target = @{
+  Key = "a4"
+  Tex = "portfolio_from_ppt_images_a4.tex"
+  BuildPdfName = "portfolio_from_ppt_images_a4.pdf"
+  FinalPdf = Join-Path $OutputRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf"
+  PageDir = Join-Path $PageRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent"
+  PagePrefix = "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent"
+  LegacyPaths = @(
+    (Join-Path $Root "portfolio_from_ppt_images.pdf"),
+    (Join-Path $Root "portfolio_from_ppt_images_a4.pdf"),
+    (Join-Path $OutputRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4.pdf"),
+    (Join-Path $BuildDir "portfolio_from_ppt_images.pdf"),
+    (Join-Path $BuildDir "portfolio_from_ppt_images_a4.pdf"),
+    (Join-Path ([Environment]::GetFolderPath("Desktop")) "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent.pdf"),
+    (Join-Path ([Environment]::GetFolderPath("Desktop")) "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4.pdf")
+  )
+}
+
+$ObsoletePaths = @(
+  (Join-Path $OutputRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4.pdf"),
+  (Join-Path $BuildDir "portfolio_from_ppt_images.pdf"),
+  (Join-Path $BuildDir "portfolio_from_ppt_images_a4.pdf"),
+  (Join-Path $Root "portfolio_from_ppt_images.pdf"),
+  (Join-Path $Root "portfolio_from_ppt_images_a4.pdf")
 )
 
-if ($Format -ne "both") {
-  $Targets = @($Targets | Where-Object { $_.Key -eq $Format })
-}
+$ObsoleteDirs = @(
+  (Join-Path $PageRoot "Fejer_Anna_88398_Mappe_BildendeKunst-Absolvent_A4")
+)
+
+$Targets = @($Target)
 
 if (-not $SkipPdf) {
   python $AuditScript --write --sync-tex
   if ($LASTEXITCODE -ne 0) { throw "Portfolio metadata sync failed" }
 
-  $closePaths = @($Targets | ForEach-Object { $_.FinalPdf; $_.BuildPdf; $_.LegacyPaths })
+  $closePaths = @($Targets | ForEach-Object { $_.FinalPdf; $_.LegacyPaths })
   powershell -NoProfile -ExecutionPolicy Bypass -File $ViewerScript -Close -Paths $closePaths
   if ($LASTEXITCODE -ne 0) { throw "Could not close open portfolio PDF viewers" }
 
+  foreach ($path in $ObsoletePaths) {
+    Remove-Item -LiteralPath $path -Force -ErrorAction SilentlyContinue
+  }
+  foreach ($dir in $ObsoleteDirs) {
+    Remove-Item -LiteralPath $dir -Recurse -Force -ErrorAction SilentlyContinue
+  }
+
   foreach ($target in $Targets) {
-    foreach ($pass in 1..2) {
-      lualatex -interaction=batchmode -halt-on-error -file-line-error "-output-directory=$BuildDir" $target.Tex
+    $runBuildDir = Join-Path $BuildDir ("run-" + (Get-Date -Format "yyyyMMdd-HHmmss-fff"))
+    New-Item -ItemType Directory -Force -Path $runBuildDir | Out-Null
+    $buildPdf = Join-Path $runBuildDir $target.BuildPdfName
+    $passes = if ($Full) { 2 } else { 1 }
+    foreach ($pass in 1..$passes) {
+      lualatex -interaction=batchmode -halt-on-error -file-line-error "-output-directory=$runBuildDir" $target.Tex
       if ($LASTEXITCODE -ne 0) { throw "LaTeX failed for $($target.Tex) on pass $pass" }
     }
 
-    Copy-Item -LiteralPath $target.BuildPdf -Destination $target.FinalPdf -Force
+    $buildInfo = & pdfinfo $buildPdf
+    if ($LASTEXITCODE -ne 0) { throw "Build PDF is not readable: $buildPdf" }
 
-    powershell -NoProfile -ExecutionPolicy Bypass -File $SplitScript `
-      -PdfPath $target.FinalPdf `
-      -OutputDir $target.PageDir `
-      -Prefix $target.PagePrefix
-    if ($LASTEXITCODE -ne 0) { throw "PDF page splitting failed for $($target.FinalPdf)" }
+    Remove-Item -LiteralPath $target.FinalPdf -Force -ErrorAction SilentlyContinue
+    Copy-Item -LiteralPath $buildPdf -Destination $target.FinalPdf -Force
+
+    $pdfInfo = & pdfinfo $target.FinalPdf
+    if ($LASTEXITCODE -ne 0) { throw "Compiled PDF is not readable: $($target.FinalPdf)" }
+
+    if ($Full) {
+      powershell -NoProfile -ExecutionPolicy Bypass -File $SplitScript `
+        -PdfPath $target.FinalPdf `
+        -OutputDir $target.PageDir `
+        -Prefix $target.PagePrefix
+      if ($LASTEXITCODE -ne 0) { throw "PDF page splitting failed for $($target.FinalPdf)" }
+    }
+
+    Remove-Item -LiteralPath $runBuildDir -Recurse -Force -ErrorAction SilentlyContinue
   }
 
-  python $AuditScript --write --require-output
-  if ($LASTEXITCODE -ne 0) { throw "Portfolio inclusion audit failed" }
+  if ($Full) {
+    python $AuditScript --write --require-output
+    if ($LASTEXITCODE -ne 0) { throw "Portfolio inclusion audit failed" }
+  }
 }
 
-Write-Host "Portfolio pipeline complete."
-Write-Host "Outputs: $OutputRoot"
+Write-Host "Portfolio PDF compile complete."
+Write-Host "PDF: $($Target.FinalPdf)"
 
 if (-not $SkipPdf -and -not $NoOpen) {
   $openPaths = @($Targets | ForEach-Object { $_.FinalPdf })
