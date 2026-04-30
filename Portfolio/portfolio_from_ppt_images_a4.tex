@@ -185,10 +185,10 @@
 \newcommand{\fitimagebox}[5]{\node[anchor=center,inner sep=0pt] at (#1,#2){\includegraphics[width=#3pt,height=#4pt,keepaspectratio]{\detokenize{#5}}};}
 \newcommand{\fitimageheight}[4]{\node[anchor=center,inner sep=0pt] at (#1,#2){\includegraphics[height=#3pt,keepaspectratio]{\detokenize{#4}}};}
 \newcommand{\artworkcaption}[2]{%
-  \node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,108){\fontsize{13.4}{15.8}\selectfont\bfseries\color{PortfolioInk}\workfield{#1}{title}};%
-  \ifcsempty{w@#1@tocmeta}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,88){\fontsize{10.1}{12.1}\selectfont\color{PortfolioGraphite}\workfield{#1}{tocmeta}};}%
-  \ifcsempty{w@#1@details}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,73){\fontsize{10.1}{12.1}\selectfont\color{PortfolioGraphite}\workfield{#1}{details}};}%
-  \ifcsempty{w@#1@location}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,58){\fontsize{9.3}{11.2}\selectfont\color{PortfolioGraphite}\workfield{#1}{location}};}%
+  \node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,92){\fontsize{13.4}{15.8}\selectfont\bfseries\color{PortfolioInk}\workfield{#1}{title}};%
+  \ifcsempty{w@#1@tocmeta}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,72){\fontsize{10.1}{12.1}\selectfont\color{PortfolioGraphite}\workfield{#1}{tocmeta}};}%
+  \ifcsempty{w@#1@details}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,57){\fontsize{10.1}{12.1}\selectfont\color{PortfolioGraphite}\workfield{#1}{details}};}%
+  \ifcsempty{w@#1@location}{}{\node[anchor=north west,inner sep=0pt,text width=650pt,align=left] at (42,42){\fontsize{9.3}{11.2}\selectfont\color{PortfolioGraphite}\workfield{#1}{location}};}%
   \draw[PortfolioInk,line width=0.8pt] (774,36) -- (774,76);\node[anchor=east,inner sep=0pt] at (799.8898,49){\fontsize{11.4}{13.4}\selectfont\bfseries\color{PortfolioInk}\padpagenum{\numexpr\csname w@#1@start\endcsname+#2-1\relax}};%
 }
 \newcommand{\tocentryrow}[4][0]{%
