@@ -1,18 +1,19 @@
-Work: Work 12
-Folder: Work 12
-Title: Craig Green Collection Black
+Work: Work 8
+Folder: Work 8
+Title: Corset
 Year of creation: 2025
-Format: Collage
-Materials: Paper, Prints, Oil
-Size: 21 cm x 14.4 cm
+Format: Digital Photograph
+Materials: Balloons, Umbrella
+Size: 29.7 cm x 21 cm
 Location: 
-Portfolio content pages: 15
+Portfolio content pages: 09-10
 
 Images used by LaTeX:
-  1. work-12-craig-green-collection-black-01.jpg - 9500 x 14096 px, RGB, dpi 96 x 96, 8.06 MB, page 1, equal-height spread image 1
-  2. work-12-craig-green-collection-black-02.jpg - 9770 x 13915 px, RGB, dpi 96 x 96, 7.89 MB, page 1, equal-height spread image 2
+  1. work-08-corset-01.jpg - 2511 x 1946 px, RGB, dpi 72 x 72, 0.56 MB, page 1, hero image
+  2. work-08-corset-02.png - 1620 x 2160 px, RGB, dpi 192 x 192, 3.85 MB, page 2, equal-height spread image 1
+  3. work-08-corset-03.jpg - 1719 x 2160 px, RGB, dpi 72 x 72, 0.39 MB, page 2, equal-height spread image 2
 
 Raw Meta.docx text:
-  Title: Craig Green Collection Black
+  Title: Corset
   Year of creation: 2025
-  Materials: Paper, Prints, OilFormat: Collage  Size: 21cm x 14.4cmLocation: (blank)
+  Materials: Balloons, UmbrellaFormat: Digital PhotographSize: 29.7cm x 21cmLocation: (blank)
